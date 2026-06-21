@@ -209,26 +209,35 @@
             border-color: var(--gold-primary);
         }
 
-        .ring-image-container {
-            width: 180px;
-            height: 180px;
+        .ring-image-placeholder {
+            width: 160px;
+            height: 160px;
             margin: 0 auto 1.5rem auto;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.05);
         }
 
-        .ring-image-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        .ring-render {
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            border: 14px solid;
             transition: transform 0.5s ease;
         }
 
-        .ring-card:hover .ring-image-container img {
-            transform: rotate(12deg) scale(1.08);
+        .ring-card:hover .ring-render {
+            transform: rotate(15deg) scale(1.05);
         }
+
+        /* Finishes styling */
+        .finish-arctic { border-color: #e5e5e5; background: #ffffff; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
+        .finish-mirror { border-color: #1a1a1a; background: #0d0d0d; box-shadow: inset 0 0 10px rgba(255,255,255,0.4); }
+        .finish-matte { border-color: #333333; background: #222222; }
+        .finish-blossom { border-color: var(--accent-pink); background: var(--accent-pink); box-shadow: 0 0 15px rgba(244,178,197,0.2); }
 
         .ring-card h3 {
             font-size: 1.3rem;
@@ -577,7 +586,6 @@
                 <ul>
                     <li><a href="#collection">Collection</a></li>
                     <li><a href="#features">Technology</a></li>
-                    <li><a href="#unboxing">Unboxing</a></li>
                     <li><a href="#sizing">Sizing</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
@@ -590,7 +598,7 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Re-imagining the ring.<br><span class="gold-text">Smartly.</span></h1>
+            <h1>Your world.<br><span class="gold-text">One elegant ring.</span></h1>
             <p>A premium ceramic smart ring engineered for seamless contactless payments. No phone. No wallet. Just your ring.</p>
             <div style="display: flex; justify-content: center; gap: 1rem;">
                 <a href="#purchase" class="btn btn-primary">Reserve Your Ring</a>
@@ -604,32 +612,32 @@
             <h2 class="section-title"><span>The Aesthetics</span>The Ceramic Suite</h2>
             <div class="ring-grid">
                 <div class="ring-card">
-                    <div class="ring-image-container">
-                        <img src="obsidian-mirror.png" alt="Obsidian Mirror finish ring render">
+                    <div class="ring-image-placeholder">
+                        <div class="ring-render finish-mirror"></div>
                     </div>
                     <h3>Obsidian Mirror</h3>
                     <div class="material">High-Grade Gloss Black Ceramic</div>
                     <p style="color: var(--text-muted); font-size: 0.9rem;">Polished to a flawless mirror sheen reflecting pure timeless sophistication.</p>
                 </div>
                 <div class="ring-card">
-                    <div class="ring-image-container">
-                        <img src="obsidian-matte.png" alt="Obsidian Matte finish ring render">
+                    <div class="ring-image-placeholder">
+                        <div class="ring-render finish-matte"></div>
                     </div>
                     <h3>Obsidian Matte</h3>
                     <div class="material">High-Grade Satin Black Ceramic</div>
                     <p style="color: var(--text-muted); font-size: 0.9rem;">A sleek, non-reflective profile precision machined for subtle modern minimalism.</p>
                 </div>
                 <div class="ring-card">
-                    <div class="ring-image-container">
-                        <img src="arctic-pearl.png" alt="Arctic Pearl finish ring render">
+                    <div class="ring-image-placeholder">
+                        <div class="ring-render finish-arctic"></div>
                     </div>
                     <h3>Arctic Pearl</h3>
                     <div class="material">High-Grade Gloss White Ceramic</div>
                     <p style="color: var(--text-muted); font-size: 0.9rem;">Brilliant alabaster luster that matches everyday elegance cleanly.</p>
                 </div>
                 <div class="ring-card">
-                    <div class="ring-image-container">
-                        <div style="width: 140px; height: 140px; border-radius: 50%; border: 14px solid var(--accent-pink); background: var(--accent-pink); box-shadow: 0 0 15px rgba(244,178,197,0.2);"></div>
+                    <div class="ring-image-placeholder">
+                        <div class="ring-render finish-blossom"></div>
                     </div>
                     <h3>Blossom Gloss</h3>
                     <div class="material">High-Grade Pink Gloss Ceramic</div>
@@ -646,7 +654,7 @@
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fa-solid fa-fingerprint"></i></div>
                     <h4>Secure Infrastructure</h4>
-                    <p>Advanced encryption tokenizes personal banking streams safely with every touch node[cite: 6].</p>
+                    <p>Advanced encryption tokenizes personal banking streams safely with every touch node.</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fa-solid fa-droplet"></i></div>
@@ -661,18 +669,18 @@
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
                     <h4>Global Tap &amp; Go</h4>
-                    <p>Fully optimized compatibility footprint designed across worldwide retail terminal spots[cite: 9].</p>
+                    <p>Fully optimized compatibility footprint designed across worldwide retail terminal spots.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="unboxing" class="section">
+    <section class="section">
         <div class="container">
             <div class="unboxing-content">
                 <div class="unboxing-text">
                     <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem;"><span>The Presentation</span>The Luxury Unboxing Experience</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">True luxury resides in the details[cite: 10]. Every Ringo arrives securely nestled in a premium, textured white jewelry display case highlighted with pristine gold trim and branding assets.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">True luxury resides in the details. Every Ringo arrives securely nestled in a premium, textured white jewelry display case highlighted with pristine gold trim and branding assets.</p>
                     <p style="color: var(--text-muted);">From the moment you slide open the protective sleeve and lift the lid, the layout showcases your hardware beautifully alongside structural details declaring its advanced security and battery-free design.</p>
                 </div>
                 <div class="unboxing-visual">
@@ -742,7 +750,7 @@
                     <span class="original-price">£99</span>
                     <span class="current-price" class="gold-text">£85</span>
                 </div>
-                <span class="shipping-tag">Includes Free Tracked UK Delivery [cite: 23]</span>
+                <span class="shipping-tag">Includes Free Tracked UK Delivery</span>
                 <button onclick="openModal('checkoutModal')" class="btn btn-primary" style="width: 100%; padding: 1.2rem; font-size: 1rem;">Proceed To Secure Checkout</button>
             </div>
         </div>
@@ -754,7 +762,7 @@
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">How does Ringo link up securely with my bank account? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">Ringo uses secure authorized third-party processing channels to map token identifiers directly onto your wearable hardware safely[cite: 6].</div>
+                    <div class="faq-answer">Ringo uses secure authorized third-party processing channels to map token identifiers directly onto your wearable hardware safely.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">Does the ring structure ever require charging cycles? <i class="fa-solid fa-chevron-down"></i></div>
@@ -762,7 +770,7 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">What happens if I accidentally misplace my ring device? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">You can instantly contact your token mapping infrastructure or manage your connected accounts to freeze your digital card provisions[cite: 9].</div>
+                    <div class="faq-answer">You can instantly contact your token mapping infrastructure or manage your connected accounts to freeze your digital card provisions.</div>
                 </div>
             </div>
         </div>
@@ -774,11 +782,11 @@
                 <div class="logo-circle"></div>
                 <span>RINGO</span>
             </div>
-            <p>&copy; 2026 RINGO. All branding, content and imagery remain the property of Ringo[cite: 2, 10].</p>
+            <p>&copy; 2026 RINGO. All branding, content and imagery remain the property of Ringo.</p>
             <p>Premium Ceramic Payment Wearables.</p>
             
             <div class="footer-links">
-                <a href="mailto:davidr@ringotap.xyz"><i class="fa-solid fa-envelope"></i> Contact: davidr@ringotap.xyz [cite: 12]</a>
+                <a href="mailto:davidr@ringotap.xyz"><i class="fa-solid fa-envelope"></i> Contact: davidr@ringotap.xyz</a>
                 <a onclick="openModal('shippingModal')">Shipping Policy</a>
                 <a onclick="openModal('returnsModal')">Returns &amp; Exchanges</a>
                 <a onclick="openModal('privacyModal')">Privacy Policy</a>
@@ -795,10 +803,10 @@
                 <div class="form-group">
                     <label>Selected Ring Finish</label>
                     <select class="form-control">
-                        <option>Obsidian Mirror (Gloss Black) - £85 [cite: 4]</option>
-                        <option>Obsidian Matte (Satin Black) - £85 [cite: 4]</option>
-                        <option>Arctic Pearl (Gloss White) - £85 [cite: 4]</option>
-                        <option>Blossom Gloss (Pink Finish) - £85 [cite: 4]</option>
+                        <option>Obsidian Mirror (Gloss Black) - £85</option>
+                        <option>Obsidian Matte (Satin Black) - £85</option>
+                        <option>Arctic Pearl (Gloss White) - £85</option>
+                        <option>Blossom Gloss (Pink Finish) - £85</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -835,7 +843,7 @@
                         <input type="text" class="form-control" required placeholder="123">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1rem;">Authorize Payment (£85.00) [cite: 4, 6]</button>
+                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1rem;">Authorize Payment (£85.00)</button>
             </form>
         </div>
     </div>
@@ -843,19 +851,19 @@
     <div id="shippingModal" class="modal">
         <div class="modal-content policy-view">
             <span class="close-modal" onclick="closeModal('shippingModal')">&times;</span>
-            <h3 class="gold-text">Ringo Shipping Policy [cite: 21]</h3>
+            <h3 class="gold-text">Ringo Shipping Policy</h3>
             <div class="policy-text">
-                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026 [cite: 22]</p>
-                <h4>Free UK Delivery [cite: 23]</h4>
-                <p>We are proud to offer free standard delivery for all orders shipped within the United Kingdom[cite: 23].</p>
+                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026</p>
+                <h4>Free UK Delivery</h4>
+                <p>We are proud to offer free standard delivery for all orders shipped within the United Kingdom.</p>
                 <h4>Processing &amp; Dispatch Timeframes</h4>
                 <ul>
-                    <li>Orders are typically processed and dispatched within 1–2 working days[cite: 24].</li>
-                    <li>Most UK orders arrive within 2–5 working days after dispatch[cite: 25].</li>
-                    <li>Tracking information will be provided where available to keep you updated on your ring's journey[cite: 26].</li>
+                    <li>Orders are typically processed and dispatched within 1–2 working days.</li>
+                    <li>Most UK orders arrive within 2–5 working days after dispatch.</li>
+                    <li>Tracking information will be provided where available to keep you updated on your ring's journey.</li>
                 </ul>
                 <h4>Customer Responsibility</h4>
-                <p>Customers are responsible for ensuring delivery information is accurate at checkout[cite: 27]. For any specific delivery enquiries, please contact us at: <strong>davidr@ringotap.xyz</strong> [cite: 28]</p>
+                <p>Customers are responsible for ensuring delivery information is accurate at checkout. For any specific delivery enquiries, please contact us at: <strong>davidr@ringotap.xyz</strong></p>
             </div>
         </div>
     </div>
@@ -863,15 +871,15 @@
     <div id="returnsModal" class="modal">
         <div class="modal-content policy-view">
             <span class="close-modal" onclick="closeModal('returnsModal')">&times;</span>
-            <h3 class="gold-text">Ringo Returns &amp; Size Exchange Policy [cite: 13]</h3>
+            <h3 class="gold-text">Ringo Returns &amp; Size Exchange Policy</h3>
             <div class="policy-text">
-                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026 [cite: 14]</p>
-                <h4>30-Day Returns [cite: 15]</h4>
-                <p>Customers may return eligible items within 30 days of delivery[cite: 16]. Refunds will be processed to the original payment method after inspection of returned goods[cite: 19].</p>
-                <h4>Free Size Exchange [cite: 17]</h4>
-                <p>One complimentary size exchange is available within 30 days of delivery, subject to stock availability[cite: 18].</p>
+                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026</p>
+                <h4>30-Day Returns</h4>
+                <p>Customers may return eligible items within 30 days of delivery. Refunds will be processed to the original payment method after inspection of returned goods.</p>
+                <h4>Free Size Exchange</h4>
+                <p>One complimentary size exchange is available within 30 days of delivery, subject to stock availability.</p>
                 <h4>Contact Support</h4>
-                <p>To initiate a return or setup an exchange request, please contact us at: <strong>davidr@ringotap.xyz</strong> [cite: 20]</p>
+                <p>To initiate a return or setup an exchange request, please contact us at: <strong>davidr@ringotap.xyz</strong></p>
             </div>
         </div>
     </div>
@@ -879,18 +887,18 @@
     <div id="privacyModal" class="modal">
         <div class="modal-content policy-view">
             <span class="close-modal" onclick="closeModal('privacyModal')">&times;</span>
-            <h3 class="gold-text">Ringo Privacy Policy [cite: 29]</h3>
+            <h3 class="gold-text">Ringo Privacy Policy</h3>
             <div class="policy-text">
-                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026 [cite: 30]</p>
-                <p>Welcome to Ringo. We operate this website and digital storefront, including all associated features, tools, products, services and content (collectively, the "Services"), to provide you with a secure and personalised shopping experience[cite: 31]. This Privacy Policy explains how Ringo collects, uses, stores, protects and shares your personal information when you visit our website, place an order, contact us or otherwise interact with our Services[cite: 32].</p>
+                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026</p>
+                <p>Welcome to Ringo. We operate this website and digital storefront, including all associated features, tools, products, services and content (collectively, the "Services"), to provide you with a secure and personalised shopping experience. This Privacy Policy explains how Ringo collects, uses, stores, protects and shares your personal information when you visit our website, place an order, contact us or otherwise interact with our Services.</p>
                 <h4>Categories of Information Collected</h4>
-                <p>Categories of information collected include contact information, payment-related transaction information, account information, order information, communications, technical information and usage data[cite: 33].</p>
+                <p>Categories of information collected include contact information, payment-related transaction information, account information, order information, communications, technical information and usage data.</p>
                 <h4>How We Use Information</h4>
-                <p>We use information to fulfil orders, provide customer support, prevent fraud, send marketing communications where permitted and comply with legal obligations[cite: 34].</p>
+                <p>We use information to fulfil orders, provide customer support, prevent fraud, send marketing communications where permitted and comply with legal obligations.</p>
                 <h4>Cookies &amp; Retention</h4>
-                <p>We use cookies and similar technologies to operate and improve our website[cite: 35]. We retain personal information only as long as necessary to fulfil orders, comply with legal obligations and resolve disputes[cite: 36].</p>
+                <p>We use cookies and similar technologies to operate and improve our website. We retain personal information only as long as necessary to fulfil orders, comply with legal obligations and resolve disputes.</p>
                 <h4>Your Rights</h4>
-                <p>You may have rights including access, correction, deletion and portability of your information[cite: 37]. Contact: <strong>davidr@ringotap.xyz</strong> [cite: 38]</p>
+                <p>You may have rights including access, correction, deletion and portability of your information. Contact: <strong>davidr@ringotap.xyz</strong></p>
             </div>
         </div>
     </div>
@@ -898,18 +906,18 @@
     <div id="termsModal" class="modal">
         <div class="modal-content policy-view">
             <span class="close-modal" onclick="closeModal('termsModal')">&times;</span>
-            <h3 class="gold-text">Ringo Terms &amp; Conditions [cite: 1]</h3>
+            <h3 class="gold-text">Ringo Terms &amp; Conditions</h3>
             <div class="policy-text">
-                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026 [cite: 2]</p>
-                <p>These Terms govern the use of the Ringo website and the purchase of Ringo products[cite: 3]. By placing an order, you agree to these bounds.</p>
+                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026</p>
+                <p>These Terms govern the use of the Ringo website and the purchase of Ringo products. By placing an order, you agree to these bounds.</p>
                 <h4>Pricing &amp; Checkout Rules</h4>
-                <p>Prices are displayed in Pounds Sterling (£)[cite: 4]. All orders are subject to acceptance and availability[cite: 5]. Payments are processed securely through authorised third-party payment providers[cite: 6].</p>
+                <p>Prices are displayed in Pounds Sterling (£). All orders are subject to acceptance and availability. Payments are processed securely through authorised third-party payment providers.</p>
                 <h4>Dispatch &amp; Exchanges</h4>
-                <p>Orders are typically dispatched within 1–2 working days[cite: 7]. Customers may return eligible products within 30 days and receive one complimentary size exchange subject to stock availability[cite: 8].</p>
+                <p>Orders are typically dispatched within 1–2 working days. Customers may return eligible products within 30 days and receive one complimentary size exchange subject to stock availability.</p>
                 <h4>Third-Party Functionality Disclaimer</h4>
-                <p>Ringo payment rings rely on compatible third-party payment services and functionality may vary by provider and region[cite: 9].</p>
+                <p>Ringo payment rings rely on compatible third-party payment services and functionality may vary by provider and region.</p>
                 <h4>Intellectual Property &amp; Governing Law</h4>
-                <p>All branding, content and imagery remain the property of Ringo[cite: 10]. These Terms are governed by the laws of England and Wales[cite: 11]. Contact: <strong>davidr@ringotap.xyz</strong> [cite: 12]</p>
+                <p>All branding, content and imagery remain the property of Ringo. These Terms are governed by the laws of England and Wales. Contact: <strong>davidr@ringotap.xyz</strong></p>
             </div>
         </div>
     </div>
