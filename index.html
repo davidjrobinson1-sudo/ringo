@@ -3,1384 +3,943 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RINGO | Smart Ring. Smart Life.</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>RINGO | Smart Contactless Payment Ring</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
-        /* --- BRAND IDENTITY COLOR PALETTE --- */
         :root {
-            --dark-bg: #0D0D0D;
-            --card-bg: #1A1A1A;
-            --gold: #D4AF37;
-            --gold-hover: #AA8B2C;
-            --white: #FFFFFF;
-            --text-gray: #CCCCCC;
-            --text-muted: #888888;
-            --border: #2A2A2A;
-            --success: #2ECC71;
+            --bg-color: #0b0b0b;
+            --card-bg: #141414;
+            --gold-primary: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: #262626;
+            --accent-pink: #f4b2c5;
         }
 
-        /* --- CSS RESET & BASE STYLES --- */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--white);
+            background-color: var(--bg-color);
+            color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .brand-font {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 1px;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
+        /* Utility classes */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
 
-        /* --- BUTTONS & INTERACTIVE ELEMENTS --- */
+        .gold-text {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .btn {
             display: inline-block;
-            padding: 14px 32px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            border-radius: 0;
-            cursor: pointer;
+            padding: 0.85rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
             transition: all 0.3s ease;
-            text-align: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
-            background-color: var(--gold);
-            color: var(--dark-bg);
-            border: 1px solid var(--gold);
-            font-weight: 600;
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
         }
 
         .btn-primary:hover {
-            background-color: transparent;
-            color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
         }
 
         .btn-secondary {
-            background-color: transparent;
-            color: var(--white);
-            border: 1px solid var(--white);
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
         }
 
         .btn-secondary:hover {
-            background-color: var(--white);
-            color: var(--dark-bg);
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
         }
 
-        /* --- NAVIGATION HEADER --- */
+        /* Header */
         header {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            z-index: 1000;
-            background-color: rgba(13, 13, 13, 0.90);
+            background: rgba(11, 11, 11, 0.85);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .nav-container {
+        header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 90px;
+            height: 80px;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-        }
-
-        .logo span {
-            color: var(--gold);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 35px;
-        }
-
-        .nav-link {
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-gray);
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--gold);
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 20px;
-            font-size: 1.2rem;
-            align-items: center;
-        }
-
-        .cart-icon-wrapper {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background-color: var(--gold);
-            color: var(--dark-bg);
-            font-size: 0.7rem;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        .menu-toggle {
-            display: none;
             font-size: 1.5rem;
-            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 3px;
         }
 
-        /* --- HERO SECTON --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
+        .logo-circle {
+            width: 28px;
+            height: 28px;
+            border: 2px solid var(--gold-primary);
+            border-radius: 50%;
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('logoring.png') no-repeat center center/cover;
-            padding-top: 90px;
         }
 
-        .hero-content {
-            max-width: 650px;
+        .logo-circle::after {
+            content: ')))';
+            position: absolute;
+            right: -12px;
+            top: -6px;
+            color: var(--gold-primary);
+            font-size: 0.7rem;
+            transform: rotate(15deg);
         }
 
-        .hero-subtitle {
-            color: var(--gold);
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
             font-size: 0.9rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            display: block;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 70%);
         }
 
         .hero h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: 35px;
-            font-weight: 300;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-        }
-
-        /* --- CORE VALUE PILLARS SECTION --- */
-        .pillars {
-            padding: 60px 0;
-            background-color: #0A0A0A;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 10fr);
-            gap: 40px;
+        /* Collection Section */
+        .section-title {
             text-align: center;
-        }
-
-        .pillar-item i {
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-
-        .pillar-item h3 {
-            font-size: 1.1rem;
+            font-size: 2.2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 3rem;
         }
 
-        .pillar-item p {
-            color: var(--text-muted);
+        .section-title span {
+            display: block;
             font-size: 0.9rem;
-        }
-
-        /* --- PRODUCT GALLERY SECTION --- */
-        .products {
-            padding: 120px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-header h2 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            color: var(--gold);
-            text-transform: uppercase;
+            color: var(--gold-primary);
             letter-spacing: 3px;
-            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
-        .product-grid {
+        .section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ring-grid {
             display: grid;
-            grid-template-columns: repeat(4, 10fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
         }
 
-        .product-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 30px 20px;
+        .ring-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
             text-align: center;
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--gold);
+        .ring-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
         }
 
-        .product-image-container {
-            height: 220px;
+        .ring-image-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem auto;
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin-bottom: 25px;
+            justify-content: center;
             position: relative;
         }
 
-        .product-card img {
+        .ring-image-container img {
+            max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s ease;
         }
 
-        .product-card:hover img {
-            transform: scale(1.1);
+        .ring-card:hover .ring-image-container img {
+            transform: rotate(12deg) scale(1.08);
         }
 
-        .product-title {
+        .ring-card h3 {
             font-size: 1.3rem;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
         }
 
-        .product-material {
-            font-size: 0.75rem;
-            text-transform: uppercase;
+        .ring-card .material {
+            font-size: 0.8rem;
             color: var(--text-muted);
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-item h4 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Unboxing Section */
+        .unboxing-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .unboxing-text {
+            flex: 1;
+        }
+
+        .unboxing-visual {
+            flex: 1;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .unboxing-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Sizing Tool */
+        .sizing-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 3rem;
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .sizing-info {
+            flex: 1;
+        }
+
+        .sizing-tool {
+            flex: 1;
+            background: #fff;
+            color: #000;
+            padding: 2rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .printable-strip {
+            border: 2px dashed #000;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            position: relative;
+            font-weight: bold;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .printable-strip .inch-marks {
+            position: absolute;
+            bottom: 2px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.5rem;
+        }
+
+        /* Checkout Card */
+        .checkout-box {
+            max-width: 550px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, var(--card-bg) 0%, #0d0d0d 100%);
+            border: 1px solid var(--gold-primary);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .price-container {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
+            margin: 1.5rem 0;
         }
 
         .original-price {
             text-decoration: line-through;
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 1.4rem;
+            margin-right: 1rem;
         }
 
         .current-price {
-            color: var(--gold);
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        /* --- EXCLUSIVE FEATURES SECTION --- */
-        .features {
-            padding: 120px 0;
-            background-color: #111111;
-        }
-
-        .feature-row {
-            display: flex;
-            align-items: center;
-            gap: 80px;
-            margin-bottom: 100px;
-        }
-
-        .feature-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .feature-row.reverse {
-            flex-direction: row-reverse;
-        }
-
-        .feature-image, .feature-text {
-            flex: 1;
-        }
-
-        .feature-image img {
-            width: 100%;
-            border-radius: 4px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .feature-text h3 {
-            font-size: 2.3rem;
-            margin-bottom: 20px;
-        }
-
-        .feature-text p {
-            color: var(--text-gray);
-            margin-bottom: 25px;
-            font-size: 1.05rem;
-            font-weight: 300;
-        }
-
-        .feature-list-items {
-            display: grid;
-            grid-template-columns: repeat(2, 10fr);
-            gap: 15px;
-        }
-
-        .feature-list-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        .feature-list-item i {
-            color: var(--gold);
-        }
-
-        /* --- UNBOXING EXPERIENCE SECTION --- */
-        .unboxing {
-            padding: 120px 0;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('packaging.jpg') no-repeat center center/cover;
-            background-attachment: fixed;
-            text-align: center;
-        }
-
-        .unboxing-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .unboxing-content h2 {
             font-size: 3rem;
-            margin-bottom: 20px;
+            font-weight: 800;
+            color: var(--text-light);
         }
 
-        .unboxing-content p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: 35px;
-            font-weight: 300;
-        }
-
-        /* --- RING SIZING GUIDE SECTION --- */
-        .sizing-section {
-            padding: 120px 0;
-        }
-
-        .sizing-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 60px;
-            display: flex;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .sizing-left {
-            flex: 1.2;
-        }
-
-        .sizing-right {
-            flex: 0.8;
-            background-color: var(--dark-bg);
-            border: 1px dashed var(--gold);
-            padding: 40px;
-            text-align: center;
-        }
-
-        .sizing-left h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .sizing-left p {
-            color: var(--text-gray);
-            margin-bottom: 25px;
-        }
-
-        .sizing-steps {
-            margin-bottom: 30px;
-        }
-
-        .step {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .step-num {
-            color: var(--gold);
-            font-weight: 700;
-        }
-
-        .sizing-right i {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-
-        .sizing-right h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sizing-right p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-        }
-
-        /* --- TESTIMONIALS SECTION --- */
-        .testimonials {
-            padding: 120px 0;
-            background-color: #111111;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 10fr);
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background-color: var(--dark-bg);
-            border: 1px solid var(--border);
-            padding: 40px;
-            position: relative;
-        }
-
-        .stars {
-            color: var(--gold);
-            margin-bottom: 20px;
+        .shipping-tag {
+            color: var(--gold-primary);
             font-size: 0.9rem;
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            color: var(--text-gray);
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-        }
-
-        .client-info h4 {
-            text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        .client-info span {
-            color: var(--gold);
-            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            display: block;
         }
 
-        /* --- FAQ SECTION --- */
-        .faq {
-            padding: 120px 0;
-        }
-
-        .faq-max {
+        /* FAQ */
+        .faq-container {
             max-width: 800px;
             margin: 0 auto;
         }
 
         .faq-item {
-            border-bottom: 1px solid var(--border);
-            padding: 25px 0;
-            cursor: pointer;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            overflow: hidden;
         }
 
         .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .faq-question h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .faq-toggle-icon {
-            font-size: 1rem;
-            transition: transform 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, margin-top 0.3s ease;
-            color: var(--text-gray);
+            padding: 0 1.5rem;
+            color: var(--text-muted);
+            transition: max-height 0.3s ease, padding 0.3s ease;
             font-size: 0.95rem;
-        }
-
-        .faq-item.active .faq-toggle-icon {
-            transform: rotate(180deg);
-            color: var(--gold);
+            border-top: 1px solid transparent;
         }
 
         .faq-item.active .faq-answer {
-            margin-top: 15px;
             max-height: 200px;
+            padding: 1.5rem;
+            border-top-color: var(--border-color);
         }
 
-        /* --- FOOTER & CONTACT SECTION --- */
-        footer {
-            background-color: #050505;
-            border-top: 1px solid var(--border);
-            padding: 80px 0 30px 0;
+        .faq-item.active .fa-chevron-down {
+            transform: rotate(180deg);
         }
 
-        .footer-grid {
+        /* Reviews Grid */
+        .reviews-grid {
             display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
-            gap: 40px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .footer-brand p {
+        .review-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 6px;
+        }
+
+        .stars {
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .review-text {
+            font-style: italic;
             color: var(--text-muted);
-            margin-top: 15px;
-            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
         }
 
-        .footer-links h4 {
+        .review-author {
+            font-weight: 600;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            color: var(--gold);
+            letter-spacing: 0.5px;
         }
 
-        .footer-links ul li {
-            margin-bottom: 12px;
+        .review-author span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--gold-primary);
+            font-weight: 400;
+            margin-top: 2px;
         }
 
-        .footer-links ul li a {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        .footer-links ul li a:hover {
-            color: var(--gold);
-            padding-left: 5px;
-        }
-
-        .footer-contact h4 {
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            color: var(--gold);
-        }
-
-        .footer-contact p {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .footer-contact a {
-            display: inline-block;
-            margin-top: 5px;
-            color: var(--white);
-            font-weight: 500;
-        }
-
-        .footer-contact a:hover {
-            color: var(--gold);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        .legal-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        /* --- SHOPPING CART SLIDEOUT PANEL --- */
-        .cart-overlay {
+        /* Modals & Popups styling */
+        .modal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
             z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
+            backdrop-filter: blur(8px);
         }
-
-        .cart-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .cart-panel {
-            position: fixed;
-            top: 0;
-            right: -450px;
-            width: 450px;
-            height: 100%;
-            background-color: var(--card-bg);
-            z-index: 2001;
-            transition: right 0.4s ease;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-        }
-
-        .cart-overlay.open .cart-panel {
-            right: 0;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
-
-        .cart-header h3 {
-            font-size: 1.5rem;
-        }
-
-        .close-cart {
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close-cart:hover {
-            color: var(--gold);
-        }
-
-        .cart-items-container {
-            flex: 1;
+        .modal.open { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            max-height: 85vh;
             overflow-y: auto;
         }
+        .modal-content.policy-view {
+            max-width: 700px;
+            border-top: 4px solid var(--gold-primary);
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px;
+            font-size: 1.5rem; cursor: pointer; color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .close-modal:hover { color: #fff; }
+        
+        /* Form controls */
+        .form-group { margin-bottom: 1.2rem; text-align: left; }
+        .form-group label { display: block; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--text-muted); }
+        .form-control {
+            width: 100%; background: #000; border: 1px solid var(--border-color);
+            padding: 0.75rem; color: #fff; border-radius: 4px; font-size: 1rem;
+        }
+        .form-control:focus { border-color: var(--gold-primary); outline: none; }
+        .form-row { display: flex; gap: 1rem; }
 
-        .empty-cart-msg {
-            color: var(--text-muted);
+        /* Legal Content Typography */
+        .policy-text h4 { color: #fff; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px;}
+        .policy-text p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6; }
+        .policy-text ul { color: var(--text-muted); margin-left: 1.2rem; margin-bottom: 1rem; font-size: 0.95rem; }
+        .policy-text li { margin-bottom: 0.4rem; }
+
+        /* Footer */
+        footer {
+            background: #060606;
+            padding: 60px 0 40px 0;
+            border-top: 1px solid var(--border-color);
             text-align: center;
-            margin-top: 40px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
-        .cart-item {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border);
+        footer p {
+            margin-bottom: 1rem;
         }
 
-        .cart-item-img {
-            width: 70px;
-            height: 70px;
-            background-color: var(--dark-bg);
-            padding: 5px;
+        .footer-links {
             display: flex;
-            align-items: center;
             justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #141414;
         }
 
-        .cart-item-details {
-            flex: 1;
-        }
-
-        .cart-item-title {
-            font-weight: 500;
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-        }
-
-        .cart-item-variant {
-            font-size: 0.75rem;
+        footer a {
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .cart-item-price {
-            color: var(--gold);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .remove-item {
-            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
             cursor: pointer;
-            transition: color 0.3s ease;
         }
 
-        .remove-item:hover {
-            color: #E74C3C;
+        footer a:hover {
+            color: var(--text-light);
         }
 
-        .cart-footer {
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-            margin-top: 20px;
-        }
-
-        .cart-summary-line {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-
-        .cart-total-price {
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        .shipping-note {
-            font-size: 0.8rem;
-            color: var(--success);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* --- RESPONSIVE MEDIA QUERIES --- */
-        @media (max-width: 1024px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 10fr);
-            }
-            .feature-row {
-                gap: 40px;
-            }
-        }
-
+        /* Responsive Breakpoints */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 90px;
-                left: 0;
-                width: 100%;
-                background-color: var(--dark-bg);
-                flex-direction: column;
-                padding: 30px;
-                gap: 20px;
-                text-align: center;
-                border-bottom: 1px solid var(--border);
-            }
-            .nav-menu.mobile-open {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            .pillars-grid {
-                grid-template-columns: 10fr;
-                gap: 30px;
-            }
-            .feature-row, .feature-row.reverse {
-                flex-direction: column;
-                gap: 30px;
-                margin-bottom: 60px;
-            }
-            .sizing-box {
-                flex-direction: column;
-                padding: 30px;
-                gap: 40px;
-            }
-            .testimonial-grid {
-                grid-template-columns: 10fr;
-            }
-            .footer-grid {
-                grid-template-columns: 10fr;
-            }
-            .cart-panel {
-                width: 100%;
-                right: -100%;
-            }
+            .hero h1 { font-size: 2.4rem; }
+            nav { display: none; }
+            .unboxing-content, .sizing-box { flex-direction: column; gap: 2rem; }
+            .sizing-box { padding: 1.5rem; }
+            .footer-links { flex-direction: column; gap: 1rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container nav-container">
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fa-solid fa-bars"></i>
-            </div>
+        <div class="container">
             <div class="logo">
-                RING<span>O</span>
+                <div class="logo-circle"></div>
+                <span>RINGO</span>
             </div>
-            <nav class="nav-menu" id="navMenu">
-                <a href="#" class="nav-link active">Home</a>
-                <a href="#products" class="nav-link">The Rings</a>
-                <a href="#features" class="nav-link">Technology</a>
-                <a href="#sizing" class="nav-link">Sizing</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="mailto:info@ringotap.xyz" class="nav-link">Contact</a>
+            <nav>
+                <ul>
+                    <li><a href="#collection">Collection</a></li>
+                    <li><a href="#features">Technology</a></li>
+                    <li><a href="#unboxing">Unboxing</a></li>
+                    <li><a href="#sizing">Sizing</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
             </nav>
-            <div class="nav-icons">
-                <div class="cart-icon-wrapper" id="cartToggle">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-count" id="cartCount">0</span>
-                </div>
+            <div>
+                <a href="#purchase" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.8rem;">Order Now</a>
             </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <span class="hero-subtitle">Security | Convenience | Style</span>
-                <h1>Your World.<br>One Elegant Ring.</h1>
-                <p>Experience true wireless freedom with premium ceramic NFC payment rings. Beautifully designed, completely battery-free, and fundamentally secure. Tap to complete any transaction instantly.</p>
-                <div class="hero-buttons">
-                    <a href="#products" class="btn btn-primary">Shop Collection</a>
-                    <a href="#features" class="btn btn-secondary">Discover More</a>
-                </div>
+            <h1>Re-imagining the ring.<br><span class="gold-text">Smartly.</span></h1>
+            <p>A premium ceramic smart ring engineered for seamless contactless payments. No phone. No wallet. Just your ring.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <a href="#purchase" class="btn btn-primary">Reserve Your Ring</a>
+                <a href="#collection" class="btn btn-secondary">Explore Finishes</a>
             </div>
         </div>
     </section>
 
-    <section class="pillars">
-        <div class="container style-container">
-            <div class="pillars-grid">
-                <div class="pillar-item">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <h3>Advanced Security</h3>
-                    <p>Protected by financial-grade tokenization layer protocol parameters.</p>
-                </div>
-                <div class="pillar-item">
-                    <i class="fa-solid fa-bolt"></i>
-                    <h3>Seamless Connectivity</h3>
-                    <p>Passive NFC array pairs immediately at standard payment readers.</p>
-                </div>
-                <div class="pillar-item">
-                    <i class="fa-solid fa-battery-empty"></i>
-                    <h3>Zero Charging</h3>
-                    <p>Powered via the terminal antenna field. Always ready for action.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="products" id="products">
+    <section id="collection" class="section">
         <div class="container">
-            <div class="section-header">
-                <p>The Inaugural Launch Collection</p>
-                <h2>Choose Your Aesthetic</h2>
-            </div>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div>
-                        <div class="product-image-container">
-                            <img src="obsidian-mirror.png" alt="Obsidian Mirror Gloss Ceramic Payment Ring">
-                        </div>
-                        <h3 class="product-title">Obsidian Mirror</h3>
-                        <div class="product-material">Premium High-Gloss Ceramic</div>
+            <h2 class="section-title"><span>The Aesthetics</span>The Ceramic Suite</h2>
+            <div class="ring-grid">
+                <div class="ring-card">
+                    <div class="ring-image-container">
+                        <img src="obsidian-mirror.png" alt="Obsidian Mirror finish ring render">
                     </div>
-                    <div>
-                        <div class="price-container">
-                            <span class="original-price">£99.00</span>
-                            <span class="current-price">£85.00</span>
-                        </div>
-                        <button class="btn btn-primary add-to-cart-btn" data-id="obsidian-mirror" data-name="Obsidian Mirror" data-price="85">Add To Bag</button>
-                    </div>
+                    <h3>Obsidian Mirror</h3>
+                    <div class="material">High-Grade Gloss Black Ceramic</div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Polished to a flawless mirror sheen reflecting pure timeless sophistication.</p>
                 </div>
-
-                <div class="product-card">
-                    <div>
-                        <div class="product-image-container">
-                            <img src="obsidian-matte.png" alt="Obsidian Matte Satin Finish Ceramic Payment Ring">
-                        </div>
-                        <h3 class="product-title">Obsidian Matte</h3>
-                        <div class="product-material">Premium Satin Ceramic</div>
+                <div class="ring-card">
+                    <div class="ring-image-container">
+                        <img src="obsidian-matte.png" alt="Obsidian Matte finish ring render">
                     </div>
-                    <div>
-                        <div class="price-container">
-                            <span class="original-price">£99.00</span>
-                            <span class="current-price">£85.00</span>
-                        </div>
-                        <button class="btn btn-primary add-to-cart-btn" data-id="obsidian-matte" data-name="Obsidian Matte" data-price="85">Add To Bag</button>
-                    </div>
+                    <h3>Obsidian Matte</h3>
+                    <div class="material">High-Grade Satin Black Ceramic</div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">A sleek, non-reflective profile precision machined for subtle modern minimalism.</p>
                 </div>
-
-                <div class="product-card">
-                    <div>
-                        <div class="product-image-container">
-                            <img src="arctic-pearl.png" alt="Arctic Pearl Gloss Ceramic Payment Ring">
-                        </div>
-                        <h3 class="product-title">Arctic Pearl</h3>
-                        <div class="product-material">Premium High-Gloss Ceramic</div>
+                <div class="ring-card">
+                    <div class="ring-image-container">
+                        <img src="arctic-pearl.png" alt="Arctic Pearl finish ring render">
                     </div>
-                    <div>
-                        <div class="price-container">
-                            <span class="original-price">£99.00</span>
-                            <span class="current-price">£85.00</span>
-                        </div>
-                        <button class="btn btn-primary add-to-cart-btn" data-id="arctic-pearl" data-name="Arctic Pearl" data-price="85">Add To Bag</button>
-                    </div>
+                    <h3>Arctic Pearl</h3>
+                    <div class="material">High-Grade Gloss White Ceramic</div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Brilliant alabaster luster that matches everyday elegance cleanly.</p>
                 </div>
-
-                <div class="product-card">
-                    <div>
-                        <div class="product-image-container">
-                            <img src="rose-quartz.png" alt="Rose Quartz Gloss Ceramic Payment Ring">
-                        </div>
-                        <h3 class="product-title">Rose Quartz</h3>
-                        <div class="product-material">Premium High-Gloss Ceramic</div>
+                <div class="ring-card">
+                    <div class="ring-image-container">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; border: 14px solid var(--accent-pink); background: var(--accent-pink); box-shadow: 0 0 15px rgba(244,178,197,0.2);"></div>
                     </div>
-                    <div>
-                        <div class="price-container">
-                            <span class="original-price">£99.00</span>
-                            <span class="current-price">£85.00</span>
-                        </div>
-                        <button class="btn btn-primary add-to-cart-btn" data-id="rose-quartz" data-name="Rose Quartz" data-price="85">Add To Bag</button>
-                    </div>
+                    <h3>Blossom Gloss</h3>
+                    <div class="material">High-Grade Pink Gloss Ceramic</div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">A distinct statement hue bringing vibrant contemporary character to custom style.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="features" id="features">
+    <section id="features" class="section" style="background-color: #0d0d0d;">
         <div class="container">
-            <div class="feature-row">
-                <div class="feature-image">
-                    <img src="tap1.jpg" alt="Using Ringo NFC Smart Payment Ring at terminal counter">
+            <h2 class="section-title"><span>Performance</span>Engineered to Endure</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-fingerprint"></i></div>
+                    <h4>Secure Infrastructure</h4>
+                    <p>Advanced encryption tokenizes personal banking streams safely with every touch node[cite: 6].</p>
                 </div>
-                <div class="feature-text">
-                    <h3>Contactless Freedom. Unmatched Security.</h3>
-                    <p>Crafted to complement both dynamic lifestyles and formal engagements, Ringo integrates secure hardware right onto your hand. Authorize payments instantly at point-of-sale terminals globally with a gentle fist closure motion.</p>
-                    <div class="feature-list-items">
-                        <div class="feature-list-item"><i class="fa-solid fa-check"></i> Financial Tokenization</div>
-                        <div class="feature-list-item"><i class="fa-solid fa-check"></i> Point-of-Sale Compatible</div>
-                        <div class="feature-list-item"><i class="fa-solid fa-check"></i> Short-Range Anti-Sniffing</div>
-                        <div class="feature-list-item"><i class="fa-solid fa-check"></i> Isolated Crypto Hardware</div>
-                    </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <h4>Waterproof Life</h4>
+                    <p>Fully resilient structural framework. Swim, shower, and exercise without friction bounds.</p>
                 </div>
-            </div>
-
-            <div class="feature-row reverse">
-                <div class="feature-image">
-                    <img src="tap2.jpg" alt="Active individual wearing Ringo waterproof smart payment ring">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-battery-empty"></i></div>
+                    <h4>Zero Charging</h4>
+                    <p>Operating purely via passive NFC tracking. No external power docks required, ever.</p>
                 </div>
-                <div class="feature-text">
-                    <h3>Engineered Zirconia Ceramic.</h3>
-                    <p>Every Ringo variant is diamond-milled from medical-grade Zirconia ceramic compounds. This brings an exceptional balance of mechanical luxury and daily protection, so you never have to leave your smart wallet behind.</p>
-                    <div class="feature-list-items">
-                        <div class="feature-list-item"><i class="fa-solid fa-check"></i> 100% Waterproof Structure</div>
-                        <div class="feature-list-item"><i class="fa-solid fa-check"></i> Hypoallergenic Construction</div>
-                        <div class="feature-list-item"><i class="fa-solid fa-check"></i> High Scratch Resistance</div>
-                        <div class="feature-list-item"><i class="fa-solid fa-check"></i> Lightweight Architecture</div>
-                    </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h4>Global Tap &amp; Go</h4>
+                    <p>Fully optimized compatibility footprint designed across worldwide retail terminal spots[cite: 9].</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="unboxing">
+    <section id="unboxing" class="section">
         <div class="container">
             <div class="unboxing-content">
-                <h2>The Unboxing Experience</h2>
-                <p>True luxury requires painstaking care from production line down to arrival. Your Ringo arrives packed within a structural high-density soft-touch presentation chest, complete with stamped branding leaf gilding and detailed initialization maps.</p>
-                <a href="#products" class="btn btn-secondary">Reserve Your Order</a>
+                <div class="unboxing-text">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem;"><span>The Presentation</span>The Luxury Unboxing Experience</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">True luxury resides in the details[cite: 10]. Every Ringo arrives securely nestled in a premium, textured white jewelry display case highlighted with pristine gold trim and branding assets.</p>
+                    <p style="color: var(--text-muted);">From the moment you slide open the protective sleeve and lift the lid, the layout showcases your hardware beautifully alongside structural details declaring its advanced security and battery-free design.</p>
+                </div>
+                <div class="unboxing-visual">
+                    <img src="packaging.jpg" alt="Ringo premium gold and white luxury retail packaging presentation">
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="sizing-section" id="sizing">
+    <section id="sizing" class="section" style="background-color: #0d0d0d;">
         <div class="container">
-            <div class="section-header">
-                <p>Tailored Fitting System</p>
-                <h2>Perfect Sizing, Guaranteed</h2>
-            </div>
+            <h2 class="section-title"><span>Accuracy</span>Finding Your Fit</h2>
             <div class="sizing-box">
-                <div class="sizing-left">
-                    <h3>Find Your Exact Match</h3>
-                    <p>Smart rings demand a precise snug fit on your selected finger to optimize ergonomic gesture execution and contact efficiency. Follow our verified multi-point scaling methods below for flawless calibration.</p>
-                    <div class="sizing-steps">
-                        <div class="step">
-                            <span class="step-num">01.</span>
-                            <div><strong>Select Your Target Finger:</strong> Most users prefer the index or middle finger of their dominant hand for natural terminal reach.</div>
-                        </div>
-                        <div class="step">
-                            <span class="step-num">02.</span>
-                            <div><strong>Print and Calibrate:</strong> Download our precise sizing template, making sure to select 100% scale in printing configuration menus.</div>
-                        </div>
-                        <div class="step">
-                            <span class="step-num">03.</span>
-                            <div><strong>Confirm Loop Closure:</strong> Wrap the cut-out ring around your designated finger base; it should pass smoothly over your knuckle.</div>
+                <div class="sizing-info">
+                    <h3>Printable Measurement Tool</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem; margin-top: 0.5rem;">For completely precise sizing, use our optimized scale cutter tool directly at home to guarantee a flush fit.</p>
+                    <ul style="list-style-position: inside; color: var(--text-muted); margin-bottom: 2rem;">
+                        <li style="margin-bottom: 0.5rem;">Print the page template at exactly 100% scaling factors.</li>
+                        <li style="margin-bottom: 0.5rem;">Carefully cut along the outer boundary lines.</li>
+                        <li style="margin-bottom: 0.5rem;">Wrap tightly around your chosen target finger node.</li>
+                    </ul>
+                    <button onclick="window.print();" class="btn btn-secondary"><i class="fa-solid fa-print" style="margin-right: 10px;"></i> Print Sizing Template</button>
+                </div>
+                <div class="sizing-tool">
+                    <div style="color: #000; font-weight: 800; font-size: 1.1rem; letter-spacing:1px;">RINGO CUT-OUT SIZE MEASURE</div>
+                    <div class="printable-strip">
+                        ----------------- SLIT HERE -----------------
+                        <div class="inch-marks">
+                            <span>| 5</span><span>| 6</span><span>| 7</span><span>| 8</span><span>| 9</span><span>| 10</span><span>| 11</span><span>| 12</span>
                         </div>
                     </div>
-                </div>
-                <div class="sizing-right">
-                    <i class="fa-solid fa-print"></i>
-                    <h4>Printable Sizing Guide</h4>
-                    <p>Download our precise sizing strip and internal measurement silhouette circles matching exact international scale maps.</p>
-                    <button class="btn btn-primary" onclick="window.print()">Download PDF Guide</button>
+                    <p style="color: #666; font-size: 0.75rem; font-style: italic;">Ensure 'Scale to Fit' option is turned off entirely when finalizing print setup jobs.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials">
+    <section class="section">
         <div class="container">
-            <div class="section-header">
-                <p>Verified Early Adopters</p>
-                <h2>The Verdict Across the Globe</h2>
-            </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p>"Leaving my phone and leather wallet behind during long dynamic trail runs while being able to pick up refreshments effortlessly at checkout terminals feels like pure magic."</p>
-                    <div class="client-info">
-                        <h4>Marcus V.</h4>
-                        <span>London, UK</span>
-                    </div>
+            <h2 class="section-title"><span>Validation</span>Early Adopter Feedback</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="review-text">"Leaving the house completely without keys, a wallet, or even a smartphone while knowing I can effortlessly pay for my transit route and coffee with a hand wave is incredibly liberating."</div>
+                    <div class="review-author">Alexander V. <span>Verified Early Tester</span></div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p>"The Obsidian Gloss finish matches beautifully with my high-end dress watches. I get questions from checkout merchants every single time I make a payment."</p>
-                    <div class="client-info">
-                        <h4>Eleanor R.</h4>
-                        <span>Edinburgh, UK</span>
-                    </div>
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="review-text">"The Obsidian Matte texture feels absolutely elite. People consistently notice it at checkout points, completely surprised that a fine piece of jewelry functions seamlessly as my primary debit card."</div>
+                    <div class="review-author">Helena K. <span>Design Consultant</span></div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p>"The setup process was incredibly straightforward and fast. Sizing guide matches perfectly. It has been over a month and I have not seen a single micro-scratch."</p>
-                    <div class="client-info">
-                        <h4>David K.</h4>
-                        <span>Manchester, UK</span>
-                    </div>
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="review-text">"The premium unboxing experience alone reflects true premium luxury focus. The ring itself fits beautifully, completely scratch-free after heavy weeks of daily gym sessions."</div>
+                    <div class="review-author">Marcus T. <span>Tech Early Adopter</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="faq" id="faq">
-        <div class="container faq-max">
-            <div class="section-header">
-                <p>Have Questions?</p>
-                <h2>Frequently Answered Queries</h2>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How do I link my payment card with Ringo?</h3>
-                    <i class="fa-solid fa-chevron-down faq-toggle-icon"></i>
+    <section id="purchase" class="section" style="background: radial-gradient(circle at center, #1c1c1c 0%, #0b0b0b 100%);">
+        <div class="container">
+            <div class="checkout-box">
+                <span style="letter-spacing: 2px; font-size: 0.85rem; color: var(--gold-primary); font-weight: 700; text-transform: uppercase;">Limited Launch Allocation</span>
+                <h3 style="font-size: 2rem; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Secure Your Ringo</h3>
+                <div class="price-container">
+                    <span class="original-price">£99</span>
+                    <span class="current-price" class="gold-text">£85</span>
                 </div>
-                <div class="faq-answer">
-                    Our smartphone onboarding application lets you securely link your current Visa or Mastercard debit or credit cards via certified financial partner tokenization systems.
-                </div>
+                <span class="shipping-tag">Includes Free Tracked UK Delivery [cite: 23]</span>
+                <button onclick="openModal('checkoutModal')" class="btn btn-primary" style="width: 100%; padding: 1.2rem; font-size: 1rem;">Proceed To Secure Checkout</button>
             </div>
+        </div>
+    </section>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Does the ring require periodic recharging?</h3>
-                    <i class="fa-solid fa-chevron-down faq-toggle-icon"></i>
+    <section id="faq" class="section" style="background-color: #0d0d0d;">
+        <div class="container">
+            <h2 class="section-title"><span>Information</span>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">How does Ringo link up securely with my bank account? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">Ringo uses secure authorized third-party processing channels to map token identifiers directly onto your wearable hardware safely[cite: 6].</div>
                 </div>
-                <div class="faq-answer">
-                    No. Ringo uses a fully passive NFC antenna array architecture. It safely harvests energy directly from the reading field of standard contactless payment terminals, meaning it never requires charging.
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Does the ring structure ever require charging cycles? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">No charging cycles are required. The internal loop draws passive induction energy bursts instantly from reading payment points.</div>
                 </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Is my personal banking data safe if I lose the ring?</h3>
-                    <i class="fa-solid fa-chevron-down faq-toggle-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    Absolutely. Ringo transmits dynamic tokenized codes instead of raw card numbers during execution. If misplaced, you can lock or deactivate your ring instantly inside our companion application.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Can I submerge the ring underwater safely?</h3>
-                    <i class="fa-solid fa-chevron-down faq-toggle-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    Yes. Ringo's Zirconia ceramic casing is entirely solid-state and hermetically sealed. It is waterproof up to 50 meters, meaning you can wear it while swimming, washing hands, or showering without issue.
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">What happens if I accidentally misplace my ring device? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">You can instantly contact your token mapping infrastructure or manage your connected accounts to freeze your digital card provisions[cite: 9].</div>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <div class="logo">RING<span>O</span></div>
-                <p>Premium Ceramic NFC Payment Wearables.<br>Smart Ring. Smart Life.</p>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
+                <div class="logo-circle"></div>
+                <span>RINGO</span>
             </div>
+            <p>&copy; 2026 RINGO. All branding, content and imagery remain the property of Ringo[cite: 2, 10].</p>
+            <p>Premium Ceramic Payment Wearables.</p>
+            
             <div class="footer-links">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#products">Collection</a></li>
-                    <li><a href="#features">Technology</a></li>
-                    <li><a href="#sizing">Sizing Guide</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#faq">FAQ Document</a></li>
-                    <li><a href="#">Shipping Rules</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4>Inquiries</h4>
-                <p>Need custom assistance or interested in wholesale corporate distribution accounts?</p>
-                <p><i class="fa-solid fa-envelope" style="color: var(--gold); margin-right: 8px;"></i> <a href="mailto:info@ringotap.xyz">info@ringotap.xyz</a></p>
-            </div>
-        </div>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Ringo Wearables Ltd. All Rights Reserved.</p>
-            <div class="legal-links">
-                <i class="fa-brands fa-cc-visa"></i>
-                <i class="fa-brands fa-cc-mastercard"></i>
-                <i class="fa-brands fa-cc-apple-pay"></i>
+                <a href="mailto:davidr@ringotap.xyz"><i class="fa-solid fa-envelope"></i> Contact: davidr@ringotap.xyz [cite: 12]</a>
+                <a onclick="openModal('shippingModal')">Shipping Policy</a>
+                <a onclick="openModal('returnsModal')">Returns &amp; Exchanges</a>
+                <a onclick="openModal('privacyModal')">Privacy Policy</a>
+                <a onclick="openModal('termsModal')">Terms &amp; Conditions</a>
             </div>
         </div>
     </footer>
 
-    <div class="cart-overlay" id="cartOverlay">
-        <div class="cart-panel">
-            <div class="cart-header">
-                <h3>Shopping Bag</h3>
-                <i class="fa-solid fa-xmark close-cart" id="cartClose"></i>
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('checkoutModal')">&times;</span>
+            <h3 style="text-transform: uppercase; letter-spacing:1px; margin-bottom:1.5rem; text-align: center;" class="gold-text"><i class="fa-solid fa-lock"></i> Secure Checkout</h3>
+            <form onsubmit="processPayment(event)">
+                <div class="form-group">
+                    <label>Selected Ring Finish</label>
+                    <select class="form-control">
+                        <option>Obsidian Mirror (Gloss Black) - £85 [cite: 4]</option>
+                        <option>Obsidian Matte (Satin Black) - £85 [cite: 4]</option>
+                        <option>Arctic Pearl (Gloss White) - £85 [cite: 4]</option>
+                        <option>Blossom Gloss (Pink Finish) - £85 [cite: 4]</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Size</label>
+                    <select class="form-control">
+                        <option>Size 6 (51.8mm)</option>
+                        <option>Size 7 (54.4mm)</option>
+                        <option>Size 8 (56.9mm)</option>
+                        <option>Size 9 (59.5mm)</option>
+                        <option>Size 10 (62.1mm)</option>
+                        <option>Size 11 (64.6mm)</option>
+                        <option>Size 12 (67.2mm)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Shipping Name</label>
+                    <input type="text" class="form-control" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>UK Delivery Address</label>
+                    <input type="text" class="form-control" required placeholder="12 Pall Mall, London">
+                </div>
+                <div class="form-group">
+                    <label>Card Details</label>
+                    <input type="text" class="form-control" required placeholder="4242 •••• •••• ••••">
+                </div>
+                <div class="form-row">
+                    <div class="form-group" style="flex:2;">
+                        <label>Expiry Date</label>
+                        <input type="text" class="form-control" required placeholder="MM/YY">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>CVC</label>
+                        <input type="text" class="form-control" required placeholder="123">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1rem;">Authorize Payment (£85.00) [cite: 4, 6]</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="shippingModal" class="modal">
+        <div class="modal-content policy-view">
+            <span class="close-modal" onclick="closeModal('shippingModal')">&times;</span>
+            <h3 class="gold-text">Ringo Shipping Policy [cite: 21]</h3>
+            <div class="policy-text">
+                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026 [cite: 22]</p>
+                <h4>Free UK Delivery [cite: 23]</h4>
+                <p>We are proud to offer free standard delivery for all orders shipped within the United Kingdom[cite: 23].</p>
+                <h4>Processing &amp; Dispatch Timeframes</h4>
+                <ul>
+                    <li>Orders are typically processed and dispatched within 1–2 working days[cite: 24].</li>
+                    <li>Most UK orders arrive within 2–5 working days after dispatch[cite: 25].</li>
+                    <li>Tracking information will be provided where available to keep you updated on your ring's journey[cite: 26].</li>
+                </ul>
+                <h4>Customer Responsibility</h4>
+                <p>Customers are responsible for ensuring delivery information is accurate at checkout[cite: 27]. For any specific delivery enquiries, please contact us at: <strong>davidr@ringotap.xyz</strong> [cite: 28]</p>
             </div>
-            <div class="cart-items-container" id="cartItemsContainer">
-                </div>
-            <div class="cart-footer">
-                <div class="cart-summary-line">
-                    <span>Subtotal</span>
-                    <span class="cart-total-price" id="cartTotal">£0.00</span>
-                </div>
-                <div class="shipping-note">
-                    <i class="fa-solid fa-truck-fast"></i> Elegantly Packed + Free UK Shipping Applied
-                </div>
-                <button class="btn btn-primary" style="width: 100%;" id="checkoutBtn">Proceed To Secure Checkout</button>
+        </div>
+    </div>
+
+    <div id="returnsModal" class="modal">
+        <div class="modal-content policy-view">
+            <span class="close-modal" onclick="closeModal('returnsModal')">&times;</span>
+            <h3 class="gold-text">Ringo Returns &amp; Size Exchange Policy [cite: 13]</h3>
+            <div class="policy-text">
+                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026 [cite: 14]</p>
+                <h4>30-Day Returns [cite: 15]</h4>
+                <p>Customers may return eligible items within 30 days of delivery[cite: 16]. Refunds will be processed to the original payment method after inspection of returned goods[cite: 19].</p>
+                <h4>Free Size Exchange [cite: 17]</h4>
+                <p>One complimentary size exchange is available within 30 days of delivery, subject to stock availability[cite: 18].</p>
+                <h4>Contact Support</h4>
+                <p>To initiate a return or setup an exchange request, please contact us at: <strong>davidr@ringotap.xyz</strong> [cite: 20]</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content policy-view">
+            <span class="close-modal" onclick="closeModal('privacyModal')">&times;</span>
+            <h3 class="gold-text">Ringo Privacy Policy [cite: 29]</h3>
+            <div class="policy-text">
+                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026 [cite: 30]</p>
+                <p>Welcome to Ringo. We operate this website and digital storefront, including all associated features, tools, products, services and content (collectively, the "Services"), to provide you with a secure and personalised shopping experience[cite: 31]. This Privacy Policy explains how Ringo collects, uses, stores, protects and shares your personal information when you visit our website, place an order, contact us or otherwise interact with our Services[cite: 32].</p>
+                <h4>Categories of Information Collected</h4>
+                <p>Categories of information collected include contact information, payment-related transaction information, account information, order information, communications, technical information and usage data[cite: 33].</p>
+                <h4>How We Use Information</h4>
+                <p>We use information to fulfil orders, provide customer support, prevent fraud, send marketing communications where permitted and comply with legal obligations[cite: 34].</p>
+                <h4>Cookies &amp; Retention</h4>
+                <p>We use cookies and similar technologies to operate and improve our website[cite: 35]. We retain personal information only as long as necessary to fulfil orders, comply with legal obligations and resolve disputes[cite: 36].</p>
+                <h4>Your Rights</h4>
+                <p>You may have rights including access, correction, deletion and portability of your information[cite: 37]. Contact: <strong>davidr@ringotap.xyz</strong> [cite: 38]</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal">
+        <div class="modal-content policy-view">
+            <span class="close-modal" onclick="closeModal('termsModal')">&times;</span>
+            <h3 class="gold-text">Ringo Terms &amp; Conditions [cite: 1]</h3>
+            <div class="policy-text">
+                <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026 [cite: 2]</p>
+                <p>These Terms govern the use of the Ringo website and the purchase of Ringo products[cite: 3]. By placing an order, you agree to these bounds.</p>
+                <h4>Pricing &amp; Checkout Rules</h4>
+                <p>Prices are displayed in Pounds Sterling (£)[cite: 4]. All orders are subject to acceptance and availability[cite: 5]. Payments are processed securely through authorised third-party payment providers[cite: 6].</p>
+                <h4>Dispatch &amp; Exchanges</h4>
+                <p>Orders are typically dispatched within 1–2 working days[cite: 7]. Customers may return eligible products within 30 days and receive one complimentary size exchange subject to stock availability[cite: 8].</p>
+                <h4>Third-Party Functionality Disclaimer</h4>
+                <p>Ringo payment rings rely on compatible third-party payment services and functionality may vary by provider and region[cite: 9].</p>
+                <h4>Intellectual Property &amp; Governing Law</h4>
+                <p>All branding, content and imagery remain the property of Ringo[cite: 10]. These Terms are governed by the laws of England and Wales[cite: 11]. Contact: <strong>davidr@ringotap.xyz</strong> [cite: 12]</p>
             </div>
         </div>
     </div>
 
     <script>
-        // DOM Node References
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        const cartToggle = document.getElementById('cartToggle');
-        const cartClose = document.getElementById('cartClose');
-        const cartOverlay = document.getElementById('cartOverlay');
-        const faqItems = document.querySelectorAll('.faq-item');
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-        const cartItemsContainer = document.getElementById('cartItemsContainer');
-        const cartCount = document.getElementById('cartCount');
-        const cartTotal = document.getElementById('cartTotal');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-
-        // Main Cart Memory Array State
-        let cart = [];
-
-        // Mobile Menu Interaction Toggle
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('mobile-open');
-        });
-
-        // Cart Drawer Panel Transitions
-        cartToggle.addEventListener('click', () => cartOverlay.classList.add('open'));
-        cartClose.addEventListener('click', () => cartOverlay.classList.remove('open'));
-        cartOverlay.addEventListener('click', (e) => {
-            if(e.target === cartOverlay) cartOverlay.classList.remove('open');
-        });
-
-        // Interactive Accordion Controller For FAQ Section
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                faqItems.forEach(i => i.classList.remove('active'));
-                if(!isActive) item.classList.add('active');
-            });
-        });
-
-        // Add Product To Cart Logic
-        addToCartButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = btn.getAttribute('data-id');
-                const name = btn.getAttribute('data-name');
-                const price = parseInt(btn.getAttribute('data-price'));
-
-                const existingItem = cart.find(item => item.id === id);
-                if(existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({ id, name, price, quantity: 1 });
-                }
-                
-                updateCartUI();
-                cartOverlay.classList.add('open');
-            });
-        });
-
-        // Update Shopping Bag Display Engine
-        function updateCartUI() {
-            cartItemsContainer.innerHTML = '';
-            let total = 0;
-            let count = 0;
-
-            if(cart.length === 0) {
-                cartItemsContainer.innerHTML = '<div class="empty-cart-msg">Your curated selection is empty.</div>';
-            } else {
-                cart.forEach(item => {
-                    total += (item.price * item.quantity);
-                    count += item.quantity;
-
-                    const element = document.createElement('div');
-                    element.classList.add('cart-item');
-                    element.innerHTML = `
-                        <div class="cart-item-img">
-                            <img src="${item.id}.png" alt="${item.name}">
-                        </div>
-                        <div class="cart-item-details">
-                            <div class="cart-item-title">${item.name}</div>
-                            <div class="cart-item-variant">Qty: ${item.quantity}</div>
-                            <div class="cart-item-price">£${item.price}.00</div>
-                        </div>
-                        <i class="fa-regular fa-trash-can remove-item" onclick="removeFromCart('${item.id}')"></i>
-                    `;
-                    cartItemsContainer.appendChild(element);
-                });
-            }
-
-            cartCount.textContent = count;
-            cartTotal.textContent = `£${total}.00`;
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
         }
 
-        // Global Window Scope Hook to Clear Item Rows
-        window.removeFromCart = function(id) {
-            cart = cart.filter(item => item.id !== id);
-            updateCartUI();
-        };
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+        }
 
-        // Secure Simulated Checkout Gateway Controller Action
-        checkoutBtn.addEventListener('click', () => {
-            if(cart.length === 0) {
-                alert("Your shopping bag is empty. Choose a ring design before executing checkout processes.");
-                return;
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+        }
+
+        function processPayment(event) {
+            event.preventDefault();
+            alert('Thank you for your order! Your secure transaction simulation completed successfully. A confirmation summary trail will be generated shortly.');
+            closeModal('checkoutModal');
+        }
+
+        // Close active modals if user clicks background areas directly
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('open');
             }
-            alert("Redirecting to your secure payment gateway transaction interface... This processing matches global safe vault token network encryption pipelines.");
-        });
+        }
     </script>
 </body>
 </html>
