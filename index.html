@@ -295,20 +295,36 @@
 
         .unboxing-visual {
             flex: 1;
+            background: linear-gradient(135deg, #1c1c1c 0%, #121212 100%);
             border: 1px solid var(--border-color);
             border-radius: 8px;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
             overflow: hidden;
-            background: #111;
+        }
+
+        .box-mockup {
+            width: 140px;
+            height: 140px;
+            background: #191919;
+            border: 2px solid var(--gold-primary);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
+            transform: rotateX(20deg) rotateY(-20deg);
+            position: relative;
         }
 
-        .unboxing-visual img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
+        .box-mockup::before {
+            content: 'R I N G O';
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--gold-primary);
         }
 
         /* Sizing Tool */
@@ -525,7 +541,7 @@
 
         /* Legal Content Typography */
         .policy-text h4 { color: #fff; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px;}
-        .policy-text p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6; }
+        .policy-text p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; line-items: 1.6; }
         .policy-text ul { color: var(--text-muted); margin-left: 1.2rem; margin-bottom: 1rem; font-size: 0.95rem; }
         .policy-text li { margin-bottom: 0.4rem; }
 
@@ -598,7 +614,7 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Your world.<br><span class="gold-text">One elegant ring.</span></h1>
+            <h1>Re-imagining the ring.<br><span class="gold-text">Smartly.</span></h1>
             <p>A premium ceramic smart ring engineered for seamless contactless payments. No phone. No wallet. Just your ring.</p>
             <div style="display: flex; justify-content: center; gap: 1rem;">
                 <a href="#purchase" class="btn btn-primary">Reserve Your Ring</a>
@@ -680,11 +696,12 @@
             <div class="unboxing-content">
                 <div class="unboxing-text">
                     <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem;"><span>The Presentation</span>The Luxury Unboxing Experience</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">True luxury resides in the details. Every Ringo arrives securely nestled in a premium, textured white jewelry display case highlighted with pristine gold trim and branding assets.</p>
-                    <p style="color: var(--text-muted);">From the moment you slide open the protective sleeve and lift the lid, the layout showcases your hardware beautifully alongside structural details declaring its advanced security and battery-free design.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">True luxury resides in the details. Every Ringo arrives securely nestled in a custom, soft-touch matte black jewelry case lined with premium protective micro-velvet fibers.</p>
+                    <p style="color: var(--text-muted);">From the moment you lift the heavy gold-embossed lid, the presentation establishes the exceptional grade of craftsmanship waiting for your hand.</p>
                 </div>
                 <div class="unboxing-visual">
-                    <img src="packaging.jpg" alt="Ringo premium gold and white luxury retail packaging presentation">
+                    <div class="box-mockup"></div>
+                    <div style="margin-top:2rem; font-size:0.8rem; letter-spacing:2px; color: var(--gold-primary);">GOLD EMBOSSED MATTE BOX</div>
                 </div>
             </div>
         </div>
@@ -762,7 +779,7 @@
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">How does Ringo link up securely with my bank account? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">Ringo uses secure authorized third-party processing channels to map token identifiers directly onto your wearable hardware safely.</div>
+                    <div class="faq-answer">Ringo uses a secure cryptographic framework to map token identifiers directly onto your wearable hardware, offering equivalent banking protection rules globally.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">Does the ring structure ever require charging cycles? <i class="fa-solid fa-chevron-down"></i></div>
@@ -770,7 +787,7 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">What happens if I accidentally misplace my ring device? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">You can instantly contact your token mapping infrastructure or manage your connected accounts to freeze your digital card provisions.</div>
+                    <div class="faq-answer">You can instantly freeze active token systems inside our online app dashboard with one tap to safeguard payment options fully.</div>
                 </div>
             </div>
         </div>
@@ -874,12 +891,12 @@
             <h3 class="gold-text">Ringo Returns &amp; Size Exchange Policy</h3>
             <div class="policy-text">
                 <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026</p>
-                <h4>30-Day Returns</h4>
-                <p>Customers may return eligible items within 30 days of delivery. Refunds will be processed to the original payment method after inspection of returned goods.</p>
+                <h4>30-Day Return window</h4>
+                <p>Customers may return eligible items within 30 days of delivery for a full refund. Refunds will be processed back to your original payment method after careful inspection of the returned goods.</p>
                 <h4>Free Size Exchange</h4>
-                <p>One complimentary size exchange is available within 30 days of delivery, subject to stock availability.</p>
+                <p>We understand that finding the perfect ring fit matters. To ensure your complete satisfaction, one complimentary size exchange is available within 30 days of delivery, subject to our current stock availability.</p>
                 <h4>Contact Support</h4>
-                <p>To initiate a return or setup an exchange request, please contact us at: <strong>davidr@ringotap.xyz</strong></p>
+                <p>To initiate a return or layout an exchange request, please email our dispatch logistics desk directly at: <strong>davidr@ringotap.xyz</strong></p>
             </div>
         </div>
     </div>
@@ -890,15 +907,15 @@
             <h3 class="gold-text">Ringo Privacy Policy</h3>
             <div class="policy-text">
                 <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026</p>
-                <p>Welcome to Ringo. We operate this website and digital storefront, including all associated features, tools, products, services and content (collectively, the "Services"), to provide you with a secure and personalised shopping experience. This Privacy Policy explains how Ringo collects, uses, stores, protects and shares your personal information when you visit our website, place an order, contact us or otherwise interact with our Services.</p>
+                <p>Welcome to Ringo. We operate this website and digital storefront, including all associated features, tools, products, services and content (collectively, the "Services"), to provide you with a secure and personalised shopping experience.</p>
                 <h4>Categories of Information Collected</h4>
-                <p>Categories of information collected include contact information, payment-related transaction information, account information, order information, communications, technical information and usage data.</p>
+                <p>We collect essential customer parameters including contact details, payment-related transaction information, account settings, order history parameters, technical usage logs, device logs, and support communications.</p>
                 <h4>How We Use Information</h4>
-                <p>We use information to fulfil orders, provide customer support, prevent fraud, send marketing communications where permitted and comply with legal obligations.</p>
+                <p>We use your data to fulfill product orders, provide comprehensive customer support, prevent payment fraud vulnerabilities, send marketing communications where explicitly permitted, and comply fully with legal obligations.</p>
                 <h4>Cookies &amp; Retention</h4>
-                <p>We use cookies and similar technologies to operate and improve our website. We retain personal information only as long as necessary to fulfil orders, comply with legal obligations and resolve disputes.</p>
+                <p>We use cookies and similar technologies to safely operate and continuously improve our website interface. We retain personal information only as long as necessary to fulfill orders, comply with legal obligations, and resolve active disputes.</p>
                 <h4>Your Rights</h4>
-                <p>You may have rights including access, correction, deletion and portability of your information. Contact: <strong>davidr@ringotap.xyz</strong></p>
+                <p>You may hold rights including the access, correction, deletion, and structural portability of your personal information. For any privacy requests, please write to us at: <strong>davidr@ringotap.xyz</strong></p>
             </div>
         </div>
     </div>
@@ -911,13 +928,13 @@
                 <p style="font-size: 0.8rem; font-style: italic;">Effective Date: June 2026</p>
                 <p>These Terms govern the use of the Ringo website and the purchase of Ringo products. By placing an order, you agree to these bounds.</p>
                 <h4>Pricing &amp; Checkout Rules</h4>
-                <p>Prices are displayed in Pounds Sterling (£). All orders are subject to acceptance and availability. Payments are processed securely through authorised third-party payment providers.</p>
+                <p>Prices are displayed clearly in Pounds Sterling (£). All orders are strictly subject to product acceptance and raw stock availability. Payments are processed securely through authorized third-party payment providers.</p>
                 <h4>Dispatch &amp; Exchanges</h4>
                 <p>Orders are typically dispatched within 1–2 working days. Customers may return eligible products within 30 days and receive one complimentary size exchange subject to stock availability.</p>
                 <h4>Third-Party Functionality Disclaimer</h4>
-                <p>Ringo payment rings rely on compatible third-party payment services and functionality may vary by provider and region.</p>
+                <p>Ringo payment rings rely on compatible third-party payment services and processing partners. Core contactless functionality may vary based on your specific bank provider and geographical region.</p>
                 <h4>Intellectual Property &amp; Governing Law</h4>
-                <p>All branding, content and imagery remain the property of Ringo. These Terms are governed by the laws of England and Wales. Contact: <strong>davidr@ringotap.xyz</strong></p>
+                <p>All branding, content and imagery remain the absolute exclusive property of Ringo. These Terms are governed by the laws of England and Wales. Contact: <strong>davidr@ringotap.xyz</strong></p>
             </div>
         </div>
     </div>
