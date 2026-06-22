@@ -120,18 +120,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 100px;
+            height: 90px;
         }
 
+        /* Updated for Image Logo Layout */
         .logo {
-            display:flex;
-            align-items:center;
+            display: flex;
+            align-items: center;
         }
 
-        .logo img{
-            height:55px;
-            width:auto;
-            display:block;
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+            object-fit: contain;
         }
 
         .nav-menu {
@@ -192,7 +194,7 @@
             align-items: center;
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('logoring.png') no-repeat center center/cover;
-            padding-top: 100px;
+            padding-top: 90px;
         }
 
         .hero-content {
@@ -907,7 +909,9 @@
             <div class="menu-toggle" id="menuToggle">
                 <i class="fa-solid fa-bars"></i>
             </div>
-            <div class="logo"><img src="ringo-logo.jpg" alt="RINGO Logo"></div>
+            <div class="logo">
+                <img src="logo.jpg" alt="RINGO Logo">
+            </div>
             <nav class="nav-menu" id="navMenu">
                 <a href="#" class="nav-link active">Home</a>
                 <a href="#products" class="nav-link">The Rings</a>
@@ -1075,23 +1079,15 @@
         </div>
     </section>
 
-    
-<section class="unboxing">
-    <div class="container">
-        <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;">
-            <div>
-                <img src="ringo-packaging.jpg" alt="RINGO Luxury Packaging" style="width:100%;border-radius:8px;box-shadow:0 20px 50px rgba(0,0,0,.5);">
-            </div>
-            <div class="unboxing-content" style="text-align:left;">
+    <section class="unboxing">
+        <div class="container">
+            <div class="unboxing-content">
                 <h2>The Unboxing Experience</h2>
-                <p>Every RINGO arrives in a premium presentation box designed to reflect the craftsmanship inside. Soft-touch finishes, gold detailing and a precision-fitted interior create an opening experience worthy of a luxury wearable.</p>
-                <p>From the moment it arrives, every detail has been considered. Elegant, secure and designed to impress before your first payment is ever made.</p>
-                <a href="#products" class="btn btn-primary">Reserve Your Ring</a>
+                <p>True luxury requires painstaking care from production line down to arrival. Your Ringo arrives packed within a structural high-density soft-touch presentation chest, complete with stamped branding leaf gilding and detailed initialization maps.</p>
+                <a href="#products" class="btn btn-secondary">Reserve Your Order</a>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
     <section class="sizing-section" id="sizing">
         <div class="container">
@@ -1221,7 +1217,9 @@
     <footer>
         <div class="container footer-grid">
             <div class="footer-brand">
-                <div class="logo">RING<span>O</span></div>
+                <div class="logo" style="margin-bottom: 15px;">
+                    <img src="logo.jpg" alt="RINGO Logo">
+                </div>
                 <p>Premium Ceramic NFC Payment Wearables.<br>Smart Ring. Smart Life.</p>
             </div>
             <div class="footer-links">
