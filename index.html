@@ -123,14 +123,13 @@
             height: 90px;
         }
 
-        /* Updated for Image Logo Layout */
         .logo {
             display: flex;
             align-items: center;
         }
 
         .logo img {
-            height: 40px;
+            height: 38px;
             width: auto;
             display: block;
             object-fit: contain;
@@ -421,19 +420,23 @@
         /* --- UNBOXING EXPERIENCE SECTION --- */
         .unboxing {
             padding: 120px 0;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('packaging.jpg') no-repeat center center/cover;
-            background-attachment: fixed;
-            text-align: center;
+            background-color: #111111;
         }
 
-        .unboxing-content {
-            max-width: 700px;
-            margin: 0 auto;
+        .unboxing-grid {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .unboxing-content, .unboxing-image {
+            flex: 1;
         }
 
         .unboxing-content h2 {
             font-size: 3rem;
             margin-bottom: 20px;
+            text-align: left;
         }
 
         .unboxing-content p {
@@ -441,6 +444,13 @@
             color: var(--text-gray);
             margin-bottom: 35px;
             font-weight: 300;
+            text-align: left;
+        }
+
+        .unboxing-image img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
         /* --- RING SIZING GUIDE SECTION --- */
@@ -850,6 +860,9 @@
             .feature-row {
                 gap: 40px;
             }
+            .unboxing-grid {
+                gap: 40px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -883,6 +896,13 @@
                 flex-direction: column;
                 gap: 30px;
                 margin-bottom: 60px;
+            }
+            .unboxing-grid {
+                flex-direction: column;
+                gap: 35px;
+            }
+            .unboxing-content h2, .unboxing-content p {
+                text-align: center;
             }
             .sizing-box {
                 flex-direction: column;
@@ -1081,10 +1101,15 @@
 
     <section class="unboxing">
         <div class="container">
-            <div class="unboxing-content">
-                <h2>The Unboxing Experience</h2>
-                <p>True luxury requires painstaking care from production line down to arrival. Your Ringo arrives packed within a structural high-density soft-touch presentation chest, complete with stamped branding leaf gilding and detailed initialization maps.</p>
-                <a href="#products" class="btn btn-secondary">Reserve Your Order</a>
+            <div class="unboxing-grid">
+                <div class="unboxing-content">
+                    <h2>The Unboxing Experience</h2>
+                    <p>True luxury requires painstaking care from production line down to arrival. Your Ringo arrives packed within a structural high-density soft-touch presentation chest, complete with stamped branding leaf gilding and detailed initialization maps.</p>
+                    <a href="#products" class="btn btn-secondary">Reserve Your Order</a>
+                </div>
+                <div class="unboxing-image">
+                    <img src="packaging(2).png" alt="Ringo Luxury Smart Ring Packaging">
+                </div>
             </div>
         </div>
     </section>
